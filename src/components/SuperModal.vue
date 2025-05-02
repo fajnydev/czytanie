@@ -12,11 +12,11 @@
       </section>
 
       <fieldset class="checker">
-        <legend>Ćwicz dowolne słowo</legend>
+        <legend>Usuń błędne hasła</legend>
         <input v-model="customText" placeholder="Wpisz słowo / sylabę"/>
         <div class="row">
           <button @click="checkReading">Sprawdź czytanie</button>
-          <button @click="blacklist" :disabled="!customText">Usuń z programu</button>
+          <button @click="addToBlacklist" :disabled="!customText">Usuń z programu</button>
         </div>
       </fieldset>
 
@@ -42,7 +42,7 @@ export default{
       const u=new SpeechSynthesisUtterance(this.customText);
       u.lang='pl-PL';u.rate=0.9;window.speechSynthesis.speak(u);
     },
-    blacklist(){
+    addToBlacklist(){
       this.$emit('blacklist',this.customText.trim().toLowerCase());
       this.customText='';
     }
@@ -57,7 +57,7 @@ export default{
 .mode-buttons button{background:#1a8cff;color:#fff}
 .checker{border:2px dashed #1a8cff;border-radius:10px;padding:1rem;margin-top:1rem}
 .checker legend{font-weight:600;padding:0 .4rem}
-.checker input{width:100%;padding:.6rem;margin:.4rem 0;border:1px solid #ccc;border-radius:6px}
+.checker input{width:100%;padding:.6rem;margin:.4rem 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;}
 .row{display:flex;gap:.5rem}
 .row button:first-child{background:#4caf50;color:#fff}
 .row button:last-child{background:#f44336;color:#fff}

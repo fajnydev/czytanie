@@ -10,7 +10,7 @@
     <Controls @answered="handleAnswer"/>
 
     <SuperModal v-if="showModal"
-                :blacklist="[...blacklist]"
+                :blacklist="blacklist"
                 @close="showModal=false"
                 @set-mode="setManualMode"
                 @blacklist="addToBlacklist"
@@ -39,7 +39,7 @@ export default{
       stats:{},
       delayId:null,
       showModal:false,
-      blacklist:new Set(JSON.parse(localStorage.getItem('readingBlacklist')||'[]'))
+      blacklist: JSON.parse(localStorage.getItem('readingBlacklist')||'[]')
     };
   },
   created(){
@@ -50,8 +50,8 @@ export default{
   },
   methods:{
     setManualMode(m){this.manualMode=m;this.showModal=false;this.nextItem();},
-    addToBlacklist(w){if(!w)return;this.blacklist.add(w);localStorage.setItem('readingBlacklist',JSON.stringify([...this.blacklist]));},
-    restoreWord(w){this.blacklist.delete(w);localStorage.setItem('readingBlacklist',JSON.stringify([...this.blacklist]));},
+    addToBlacklist(w){if(!w)return;if(!this.blacklist.includes(w)){this.blacklist.push(w);}localStorage.setItem('readingBlacklist',JSON.stringify([...this.blacklist]));},
+    restoreWord(w){this.blacklist = this.blacklist.filter(wo => wo !== w);localStorage.setItem('readingBlacklist',JSON.stringify([...this.blacklist]));},
     resetQueues(){this.syllableQueue=[...this.syllablesBase];this.wordQueue=this.wordsBase.map(w=>({...w}));},
     pickRandom(a){return a[Math.floor(Math.random()*a.length)]},
     pickWeightedLetter(){
@@ -73,7 +73,7 @@ export default{
         else if(mode==='letters'){item={text:this.pickWeightedLetter(),type:'letter'};}
         else if(mode==='syllables'){item={text:this.pickRandom(this.syllableQueue),type:'syllable'};}
         else {item={...this.pickRandom(this.wordQueue),type:'word'};}
-      }while(this.blacklist.has(item.text.toLowerCase()))
+      }while(this.blacklist.includes(item.text.toLowerCase()))
       this.currentItem=item;this.startTime=Date.now();
     },
     enqueueImmediate(e){this.immediateQueue.push(e);},
