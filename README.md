@@ -10,21 +10,12 @@ npm run serve
 ```
 
 Aplikacja będzie dostępna pod `http://localhost:8080`.
-Dostępna też na githubPages
+Dostępna też na githubPages https://fajnydev.github.io/czytanie
 
-## Budowanie i publikacja na GitHub Pages
-
-1. Edytuj `vue.config.js`, ustawiając `publicPath` na `'/nazwa‑repozytorium/'`.
-2. Zbuduj projekt:
+## Zbuduj projekt:
 
 ```bash
 npm run build
 ```
 
-3. Opublikuj:
-
-```bash
-npm run deploy
-```
-
-> Komenda korzysta z pakietu **gh-pages** i wypycha zbudowany katalog _dist/_ na gałąź **gh-pages**.
+Zbuduje sie do docs, spuszuj i bedzie live
