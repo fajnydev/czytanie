@@ -92,24 +92,23 @@ export default {
 }
 </script>
 <style scoped>
-.modal {
-  position: fixed;
-  inset: 0;
-  background: #0008;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20
+.modal{
+  position:fixed; inset:0;
+  background:#0008;
+  display:flex; justify-content:center; align-items:center;
+  z-index:20;
 }
 
-.box {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 340px;
-  width: 92%;
-  position: relative;
-  text-align: center
+.box{
+  background:#fff;
+  padding:2rem 2.5rem;
+  border-radius:12px;
+
+  max-height:90vh;          /* nigdy więcej niż 90 % wysokości ekranu */
+  overflow-y:auto;          /* gdy za wysokie – pojawi się przewijanie */
+
+  max-width:340px; width:92%;
+  position:relative; text-align:center;
 }
 
 .close {
@@ -210,11 +209,8 @@ export default {
   font-size: 1rem
 }
 
-.tableWrap {
-  overflow: auto;
-  max-height: 180px;
-  margin-bottom: .5rem
-}
+.tableWrap{overflow:auto; max-height:180px; margin-bottom:.5rem}
+
 
 table {
   width: 100%;
