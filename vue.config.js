@@ -1,1 +1,1 @@
-module.exports={publicPath:process.env.NODE_ENV==='production'?'/czytanie/':'/',outputDir:'dist'};
+module.exports={publicPath:process.env.NODE_ENV==='production'?'/czytanie/':'/',outputDir:'docs'};
