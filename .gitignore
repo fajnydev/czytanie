@@ -1,0 +1,29 @@
+# --- node / npm ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- produkcyjny build ---
+docs/          # jeśli publikujesz przez GitHub Pages z /docs
+coverage/
+*.local        # env-pliki dev (np. .env.local)
+
+# --- system-owe / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- build cache Vue CLI / Vite ---
+.cache/
+temp/
+*.temp
+*.log
+
+# --- zależnie od OS ---
+*.bak
+*.orig
